@@ -1,0 +1,129 @@
+[user]
+	name = Your Name
+	email = you@youremail.com
+[alias]
+	A = add -A
+  	a  = add
+	aa = add --all
+	ae = add --edit
+	ai = add --interactive
+	amend = commit --amend -C HEAD
+	ap = add --patch
+	au = add --update
+	authors = "!git log --pretty=format:%aN | sort | uniq -c | sort -rn"
+	b = branch
+	c = commit
+	ca = commit --amend
+	cam = commit -am 
+	changes = diff --name-status -r
+	cm = commit --message
+	co = checkout
+	cpc = cherry-pick
+	cu = !git branch --merged | egrep -v \"(^\\*|master|main|develop)\" | xargs git branch -d
+	d = diff
+	dc = diff --cached
+	div = divergence
+	ds = diff --staged
+	fu = fetch upstream
+	mud = merge upstream/develop
+	h = help
+	irb = rebase --interactive
+	l = log --oneline --decorate
+	lg = log --graph --pretty=format:'%Cred%h%Creset %an -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+	ls-ignored = ls-files --exclude-standard --ignored --others
+	m = merge
+	mm = merge --no-ff
+	msg = commit --allow-empty -m
+	p = cherry-pick -s
+	pick = cherry-pick
+  	po = push origin
+	pom = push origin master
+	pofm = push origin HEAD:refs/for/master
+	pofd = push origin HEAD:refs/for/develop
+	pod = push origin develop
+	prune-remotes = "!for remote in `git remote`; do git remote prune $remote; done"
+	push = push --tags
+	r = remote
+	ra = !git log --graph --abbrev-commit --date=relative -20 --all --pretty='format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'
+	rb = rebase
+	rba = rebase --abort
+	rbc = rebase --continue
+	rbs = rebase --skip
+	rh = reset --hard
+	ru = remote update --prune
+	s = status --short --branch
+	sl = shortlog
+	sm = submodule
+	sma = submodule add
+	smu = submodule update --init
+	st = stash
+	stl = stash list
+	stp = stash pop
+	tagcommit = !sh -c 'git rev-list $0 | head -n 1'
+	tree = log --graph --pretty=oneline --decorate
+	undo = reset --soft HEAD^
+  	unwatch = update-index --assume-unchanged
+  	up = pull --rebase --autostash
+  	watch = update-index --no-assume-unchanged
+	wd = diff --color-words
+	wds = diff --color-words --staged
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+	interactive = auto
+	ui = true
+	pager = true
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+[help]
+	autocorrect = 0
+[apply]
+	whitespace = nowarn
+[merge]
+	tool = diffmerge
+[mergetool "diffmerge"]
+	cmd = diffmerge --merge --result=\"$MERGED\"  \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+	trustexitcode = false
+[mergetool]
+	keepBackup = false
+[push]
+	default = current
+[diff]
+	tool = diffmerge
+	renames = copies
+	mnemonicprefix = true
+[difftool]
+	prompt = false	
+[difftool "diffmerge"]
+	cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
+[core]
+	editor = code --wait
+	excludesfile = /Users/donnfelker/.gitignore_global
+	autocrlf = input
+
+[filter "media"]
+	clean = git media clean %f
+	smudge = git media smudge %f
+	required = true
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
